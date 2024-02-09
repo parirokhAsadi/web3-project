@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <button id="info" onclick="updateURLParameter('module','info')">info</button>
+    <button id="profile" onclick="updateURLParameter('module','profile')">profile</button>
+    <div id="info-tab" style="display: none;">
+        <h1>info</h1>
+    </div>
+    <div id="profile-tab" style="display: none;">
+        <h1>profile</h1>
+    </div>
+    <script>
+        function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+        function updateURLParameter(param, paramVal) {
+            var regex = new RegExp('(?<=[?|&])(' + param + '=)[^\&]+', 'i');
+            window.location.href = window.location.href.replace(regex, param + '=' + paramVal);
+
+        }
+
+
+
+        let module = getParameterByName('module');
+        document.getElementById(module).style.color = 'red';
+        document.getElementById(`${module}-tab`).style.display = 'block';
+
+    </script>
+</body>
+
+</html>

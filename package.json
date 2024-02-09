@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "dropify": "^0.2.2",
+    "party-js": "^2.2.0"
+  }
+}
